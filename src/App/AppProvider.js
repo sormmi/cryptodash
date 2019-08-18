@@ -13,6 +13,7 @@ export class AppProvider extends React.Component {
         super(props);
         this.state = {
             page: 'dashboard',
+            chartTimeUnit: 'months',
             favorites: ['BTC', 'ETH', 'XMR', 'DOGE'],
             ...this.savedSettings(),
             setPage: this.setPage,
@@ -21,7 +22,8 @@ export class AppProvider extends React.Component {
             confirmFavorites: this.confirmFavorites,
             setCurrentFavorite: this.setCurrentFavorite,
             isInFavorites: this.isInFavorites,
-            setFilteredCoins: this.setFilteredCoins
+            setFilteredCoins: this.setFilteredCoins,
+            onChartTypeChange: this.onChartTypeChange
         };
     }
 
@@ -70,7 +72,7 @@ export class AppProvider extends React.Component {
                 name: this.state.currentFavorite,
                 data: results.map((ticker, index) => [
                         moment()
-                            .subtract({months: TIME_UNITS - index})
+                            .subtract({[this.state.chartTimeUnit]: TIME_UNITS - index})
                             .valueOf(),
                         ticker.EUR
                     ]
@@ -101,7 +103,10 @@ export class AppProvider extends React.Component {
                     this.state.currentFavorite,
                     ['EUR'],
                     moment()
-                        .subtract({months: units})
+                        .subtract({
+                            [this.state.chartTimeUnit]:
+                            units
+                        })
                         .toDate()
                 )
             );
@@ -129,6 +134,10 @@ export class AppProvider extends React.Component {
             ...JSON.parse(localStorage.getItem('cryptoDash')),
             currentFavorite: sym
         }));
+    };
+
+    onChartTypeChange = (val) => {
+        this.setState({chartTimeUnit: val, historical: null}, this.fetchHistorical);
     };
 
     confirmFavorites = () => {
