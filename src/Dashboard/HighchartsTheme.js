@@ -1,12 +1,14 @@
+import {theme} from '../Shared/Styles';
+
 export default {
     colors: ['#61d393', '#552ccb', '#1163c9', '#04a1ee', '#08c6e0',
         '#146b9e', '#f376c1', '#1b2839', '#DF5353', '#7798BF', '#aaeeee'],
     chart: {
-        backgroundColor: '#061044',
+        backgroundColor: theme === 'light' ? '#fff' : '#061044',
         borderColor: '#000000',
         borderWidth: 0,
         className: 'dark-container',
-        plotBackgroundColor: '#061044'
+        plotBackgroundColor: theme === 'light' ? '#fff' : '#061044'
     },
     title: {
         style: {

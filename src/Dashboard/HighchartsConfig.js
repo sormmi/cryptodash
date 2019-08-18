@@ -8,7 +8,7 @@ export default function (historical) {
         },
         yAxis: {
             title: {
-                text: 'Price'
+                text: 'Price €'
             }
         },
         xAxis: {

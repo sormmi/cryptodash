@@ -53,7 +53,7 @@ const Search = () => {
         <AppContext.Consumer>
             {({setFilteredCoins, coinList}) =>
                 <SearchGrid>
-                    <h2>Search all coins</h2>
+                    <h3>Search all coins</h3>
                     <SearchInput onKeyUp={(e) => filterCoins(e, setFilteredCoins, coinList)}/>
                 </SearchGrid>
             }
