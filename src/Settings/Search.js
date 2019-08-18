@@ -15,7 +15,8 @@ const SearchInput = styled.input`
     ${fontSize2}
     font-weight: 900;
     border: 1px solid;
-    height: 25px;
+    height: 30px;
+    padding-left: 6px;
     color: #116379;
     place-self: center left;
 `;
